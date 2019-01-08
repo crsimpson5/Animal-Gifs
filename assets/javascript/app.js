@@ -1,15 +1,21 @@
 var animals = ["dog", "cat", "bird", "giraffe", "fish", "seal", "hedgehog", "hamster", "zebra", "elephant", "frog"]
 
-// Create button for each animal
-animals.forEach(function (animal) {
-  var button = $("<button>");
+function renderButtons() {
+  $("#button-div").empty();
 
-  button.text(animal);
-  button.val(animal);
-  button.addClass("animal-button");
+  // Create button for each animal
+  animals.forEach(function (animal) {
+    var button = $("<button>");
 
-  $("#button-div").append(button);
-});
+    button.text(animal);
+    button.val(animal);
+    button.addClass("animal-button");
+
+    $("#button-div").append(button);
+  });
+};
+
+renderButtons();
 
 // Click handler for button
 $(document.body).on("click", ".animal-button", function () {
@@ -35,13 +41,12 @@ $(document.body).on("click", ".animal-button", function () {
       img.attr("data-still", response.data[i].images.fixed_height_still.url);
       img.attr("data-animate", response.data[i].images.fixed_height.url);
       img.addClass("animal-gif");
-      
+
       rating.text("Rating: " + response.data[i].rating);
 
       newDiv.append(img);
       newDiv.append(rating);
       newDiv.addClass("animal-div");
-      
 
       $("#gif-div").append(newDiv);
     }
@@ -68,3 +73,15 @@ $(document.body).on("click", ".animal-gif", function () {
     $(this).attr("data-state", "still");
   }
 });
+
+$("#add-animal").on("click", function () {
+  event.preventDefault();
+
+  var animal = $("#new-animal").val().trim();
+
+  animals.push(animal);
+  renderButtons();
+
+  $("#new-animal").val("");
+});
+
