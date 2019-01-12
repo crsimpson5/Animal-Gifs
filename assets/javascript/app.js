@@ -15,11 +15,10 @@ function renderButtons() {
   });
 };
 
+// Initial render
 renderButtons();
 
-// Click handler for button
 $(document.body).on("click", ".animal-button", function () {
-  // Display 10 gifs with rating under
   var animal = $(this).val();
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=pyrPRPiNNoIhtHbik0pzi1MM6j1m7Qdn&q=" + animal + "&limit=10";
 
@@ -31,10 +30,11 @@ $(document.body).on("click", ".animal-button", function () {
   }).then(function (response) {
     console.log(response);
 
+    // Display 10 gifs with rating beneath
     for (var i = 0; i < 10; i++) {
       var newDiv = $("<div>");
       var img = $("<img>");
-      var rating = $("<h2>");
+      var rating = $("<p>");
 
       img.attr("src", response.data[i].images.fixed_height_still.url);
       img.attr("data-state", "still");
@@ -52,19 +52,12 @@ $(document.body).on("click", ".animal-button", function () {
     }
 
   });
-
-
 });
 
-
-
-
-
-// Click handler for static image
 $(document.body).on("click", ".animal-gif", function () {
-  // toggle animate
   var state = $(this).attr("data-state");
 
+  // Toggle animate
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
@@ -79,9 +72,11 @@ $("#add-animal").on("click", function () {
 
   var animal = $("#new-animal").val().trim();
 
-  animals.push(animal);
-  renderButtons();
+  if (animal !== "") {
+    animals.push(animal);
+    renderButtons();
 
-  $("#new-animal").val("");
+    $("#new-animal").val("");
+  }
 });
 

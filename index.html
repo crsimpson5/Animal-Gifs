@@ -2,20 +2,25 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
   <title>Animal Gifs</title>
 </head>
 
 <body>
 
-  <form id="animal-form">
-    Add an animal<br>
-    <input id="new-animal" type="text" ><br>
-    <input id="add-animal" type="submit" value="Add animal">
-  </form>
-  
-  <div id="button-div"></div>
-  <div id="gif-div"></div>
+  <div id="main">
+    <h1>Animal Gifs</h1>
+
+    <form id="animal-form">
+      <input id="new-animal" type="text" autocomplete="off" placeholder="Add an animal"> 
+      <input id="add-animal" type="submit" value="Submit">
+    </form>
+
+    <div id="button-div"></div>
+    <div id="gif-div"></div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="assets/javascript/app.js"></script>
